@@ -9,15 +9,15 @@ import metaData.MessageService;
 public class MainServer {
 
 	public static void main(String[] args) {
-		if (System.getSecurityManager() == null) {
+		/*if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
-        }
+        }*/
         try {
             String name = "MessageService";
             MessageService service = new ChatServer(15, 30);
             MessageService stub =
                 (MessageService) UnicastRemoteObject.exportObject(service, 0);
-            Registry registry = LocateRegistry.getRegistry();
+            Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind(name, stub);
             System.out.println("MessageService bound");
         } catch (Exception e) {

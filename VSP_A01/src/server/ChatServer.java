@@ -47,7 +47,12 @@ public class ChatServer implements MessageService {
 			}
 			
 		}, this.secLifetimeClient*SEC_TO_MSEC);
-		return this.clients.get(clientID).getNextMessage();
+		
+		String returnValue = null;
+		if(this.clients.get(clientID) != null){
+			returnValue = this.clients.get(clientID).getNextMessage();
+		}
+		return returnValue;
 	}
 
 	@Override

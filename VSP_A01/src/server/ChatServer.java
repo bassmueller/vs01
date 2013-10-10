@@ -12,7 +12,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-
 public class ChatServer implements MessageService {
 	
 	private int messageID;
@@ -35,12 +34,7 @@ public class ChatServer implements MessageService {
 	@Override
 	public String nextMessage(final String clientID) throws RemoteException {
 		log(String.format("Client %s holt Nachtricht ab", clientID), false);
-		if(this.lifetimeClients.containsKey(clientID)){
-			this.lifetimeClients.get(clientID).cancel();
-		}
-		
-		
-		this.lifetimeClients.put(clientID, new Timer());	
+		this.lifetimeClients.put(clientID, new Timer());
 		this.lifetimeClients.get(clientID).schedule(new TimerTask(){
 
 			@Override
@@ -51,6 +45,7 @@ public class ChatServer implements MessageService {
 			}
 			
 		}, this.secLifetimeClient*SEC_TO_MSEC);
+		
 		String returnValue = null;
 		if(this.clients.get(clientID) != null){
 			returnValue = this.clients.get(clientID).getNextMessage();

@@ -12,7 +12,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import metaData.MessageService;
 
 public class ChatServer implements MessageService {
 	
@@ -36,18 +35,27 @@ public class ChatServer implements MessageService {
 	@Override
 	public String nextMessage(final String clientID) throws RemoteException {
 		log(String.format("Client %s holt Nachtricht ab", clientID), false);
-		this.lifetimeClients.put(clientID, new Timer());
+		if(this.lifetimeClients.containsKey(clientID)){
+			this.lifetimeClients.get(clientID).cancel();
+		}
+		
+		
+		this.lifetimeClients.put(clientID, new Timer());	
 		this.lifetimeClients.get(clientID).schedule(new TimerTask(){
 
 			@Override
 			public void run() {
 				clients.remove(clientID);
 				lifetimeClients.remove(clientID);
-				logger.warning(String.format("Client %s wurde komplett vom Server entfernt, da die maximale Zeitperiode zwischen dem Abholen von Nachrichten überschritten wurde", clientID));
+				logger.warning(String.format("Client %s wurde komplett vom Server entfernt, da die maximale Zeitperiode zwischen dem Abholen von Nachrichten ï¿½berschritten wurde", clientID));
 			}
 			
 		}, this.secLifetimeClient*SEC_TO_MSEC);
-		return this.clients.get(clientID).getNextMessage();
+		String returnValue = null;
+		if(this.clients.get(clientID) != null){
+			returnValue = this.clients.get(clientID).getNextMessage();
+		}
+		return returnValue;
 	}
 
 	@Override
@@ -56,12 +64,12 @@ public class ChatServer implements MessageService {
 		String msg = String.format("<%s> <%s>: <%s> <%s>",this.messageID++, clientID, message, (new Timestamp(new Date().getTime())));
 		if(this.clients.containsKey(clientID)){
 			this.clients.get(clientID).setMessage(msg);;
-			log(String.format("Nachricht für Client %s empfangen: %s", clientID, msg), false);
+			log(String.format("Nachricht fï¿½r Client %s empfangen: %s", clientID, msg), false);
 		}else{
 			this.clients.put(clientID, new ClientDataStructure(secHoldLastMsg));
-			log(String.format("ClientDataStructure für Client %s angelegt", clientID), false);
+			log(String.format("ClientDataStructure fï¿½r Client %s angelegt", clientID), false);
 			this.clients.get(clientID).setMessage(msg);
-			log(String.format("Nachricht für Client %s empfangen: %s", clientID, msg), false);
+			log(String.format("Nachricht fï¿½r Client %s empfangen: %s", clientID, msg), false);
 		}
 	}
 	

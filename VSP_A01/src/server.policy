@@ -1,0 +1,3 @@
+grant codeBase "file:/home/networker/eclipse42/vs01/VSP_A01/bin/" {
+    permission java.security.AllPermission;
+};

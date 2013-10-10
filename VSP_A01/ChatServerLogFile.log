@@ -1,0 +1,28 @@
+Oct 10, 2013 2:16:24 PM server.ChatServer log
+INFO: Logfile initialized...
+Oct 10, 2013 2:16:24 PM server.ChatServer log
+INFO: ClientDataStructure f�r Client Default2 angelegt
+Oct 10, 2013 2:16:24 PM server.ChatServer log
+INFO: Nachricht f�r Client Default2 empfangen: <0> <Default2>: <Enter Message here> <2013-10-10 14:16:24.727>
+Oct 10, 2013 2:16:30 PM server.ChatServer log
+INFO: Client Default holt Nachtricht ab
+Oct 10, 2013 2:16:33 PM server.ChatServer log
+INFO: Client Default holt Nachtricht ab
+Oct 10, 2013 2:16:34 PM server.ChatServer log
+INFO: Client Default holt Nachtricht ab
+Oct 10, 2013 2:16:37 PM server.ChatServer log
+INFO: Client Default2 holt Nachtricht ab
+Oct 10, 2013 2:16:39 PM server.ChatServer log
+INFO: ClientDataStructure f�r Client Default angelegt
+Oct 10, 2013 2:16:39 PM server.ChatServer log
+INFO: Nachricht f�r Client Default empfangen: <1> <Default>: <Enter Message here> <2013-10-10 14:16:39.054>
+Oct 10, 2013 2:16:40 PM server.ChatServer log
+INFO: Client Default holt Nachtricht ab
+Oct 10, 2013 2:16:47 PM server.ChatServer log
+INFO: Nachricht f�r Client Default empfangen: <2> <Default>: <Enter Message here> <2013-10-10 14:16:47.765>
+Oct 10, 2013 2:16:49 PM server.ChatServer log
+INFO: Client Default holt Nachtricht ab
+Oct 10, 2013 2:17:07 PM server.ChatServer$1 run
+WARNING: Client Default2 wurde komplett vom Server entfernt, da die maximale Zeitperiode zwischen dem Abholen von Nachrichten �berschritten wurde
+Oct 10, 2013 2:17:19 PM server.ChatServer$1 run
+WARNING: Client Default wurde komplett vom Server entfernt, da die maximale Zeitperiode zwischen dem Abholen von Nachrichten �berschritten wurde

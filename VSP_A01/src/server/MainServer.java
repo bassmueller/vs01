@@ -8,9 +8,9 @@ import java.rmi.server.UnicastRemoteObject;
 public class MainServer {
 
 	public static void main(String[] args) {
-		/*if (System.getSecurityManager() == null) {
+		if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
-        }*/
+        }
         try {
             String name = "MessageService";
             MessageService service = new ChatServer(15, 30);

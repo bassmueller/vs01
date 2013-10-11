@@ -4,7 +4,11 @@ import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
+/**
+ * 
+ * @author Manuel Boesch, Sebastian Mueller
+ *
+ */
 public class ClientDataStructure {
 	//Nachrichten des Clients
 	private Queue<String> messages;
@@ -16,6 +20,11 @@ public class ClientDataStructure {
 	//Konstante zur Umrechnung von sec auf msec
 	private final static int SEC_TO_MSEC = 1000;
 	
+	/**
+	 * Konstruktor
+	 *  
+	 * @param secHoldLastMsg
+	 */
 	public ClientDataStructure(int secHoldLastMsg){
 		this.messages = new ConcurrentLinkedQueue<String>();
 		this.timer = new Timer();

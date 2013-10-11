@@ -3,8 +3,11 @@ package server;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-
-
+/**
+ * 
+ * @author Manuel Boesch, Sebastian Mueller
+ *
+ */
 public class MainServer {
 
 	public static void main(String[] args) {

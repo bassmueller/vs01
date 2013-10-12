@@ -52,7 +52,7 @@ public class ChatServer implements MessageService {
 	
 	@Override
 	public String nextMessage(final String clientID) throws RemoteException {
-		log(String.format("Client %s holt Nachtricht ab", clientID), false);
+		log(String.format("Client %s holt Nachricht ab", clientID), false);
 		//vorhandene Timer zum Entfernen der Clients canceln
 		if(this.lifetimeClients.containsKey(clientID)){
 			this.lifetimeClients.get(clientID).cancel();

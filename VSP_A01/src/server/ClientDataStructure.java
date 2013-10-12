@@ -16,6 +16,8 @@ public class ClientDataStructure {
 	private String lastMessage;
 	//TimeOut für Speicher der zuletzt abgeholten Nachricht
 	private int secHoldLastMsg;
+	//Maximale Anzahl von Nachrichten in der Nachrichtenqueue
+	private int maxNumberOfMessages;
 	private Timer timer;
 	//Konstante zur Umrechnung von sec auf msec
 	private final static int SEC_TO_MSEC = 1000;
@@ -25,13 +27,17 @@ public class ClientDataStructure {
 	 *  
 	 * @param secHoldLastMsg
 	 */
-	public ClientDataStructure(int secHoldLastMsg){
+	public ClientDataStructure(int secHoldLastMsg, int maxNumberOfMessages){
 		this.messages = new ConcurrentLinkedQueue<String>();
 		this.timer = new Timer();
 		this.secHoldLastMsg = secHoldLastMsg;
+		this.maxNumberOfMessages = maxNumberOfMessages;
 	}
 	
 	public void setMessage(String msg){
+		while(this.messages.size()>=this.maxNumberOfMessages){
+			this.messages.poll();
+		}
 		this.lastMessage = msg;
 		//Nachricht wird zur Queue hinzugefuegt
 		this.messages.add(msg);

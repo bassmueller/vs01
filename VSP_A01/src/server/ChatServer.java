@@ -23,6 +23,8 @@ public class ChatServer implements MessageService {
 	private int secHoldLastMsg;
 	//Gedaechtniszeit bis Löschen des Clients
 	private int secLifetimeClient;
+	//Maximale Anzahl von Nachrichten in der Nachrichtenqueue
+	private int maxNumberOfMessages;
 	//Datenstruktur zur Speicherung der Client-Daten
 	private Map<String, ClientDataStructure> clients;
 	//Datenstrukur zur Speicherung des Timer-Outs zur Entfernung der Clients
@@ -38,13 +40,14 @@ public class ChatServer implements MessageService {
 	 * @param secHoldLastMsg
 	 * @param secLifetimeClient
 	 */
-	public ChatServer(int secHoldLastMsg, int secLifetimeClient) {
+	public ChatServer(int secHoldLastMsg, int secLifetimeClient, int maxNumberOfMessages) {
 	    super();
 	    this.clients = new HashMap<String, ClientDataStructure>();
 	    this.lifetimeClients = new HashMap<String, Timer>();
 	    this.messageID = 0;
 	    this.secHoldLastMsg = secHoldLastMsg;
 	    this.secLifetimeClient = secLifetimeClient;
+	    this.maxNumberOfMessages = maxNumberOfMessages;
 	}
 	
 	@Override
@@ -87,7 +90,7 @@ public class ChatServer implements MessageService {
 			log(String.format("Nachricht fï¿½r Client %s empfangen: %s", clientID, msg), false);
 		}else{
 			//
-			this.clients.put(clientID, new ClientDataStructure(secHoldLastMsg));
+			this.clients.put(clientID, new ClientDataStructure(secHoldLastMsg, maxNumberOfMessages));
 			log(String.format("ClientDataStructure fï¿½r Client %s angelegt", clientID), false);
 			this.clients.get(clientID).setMessage(msg);
 			log(String.format("Nachricht fï¿½r Client %s empfangen: %s", clientID, msg), false);

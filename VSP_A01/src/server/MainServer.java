@@ -16,7 +16,7 @@ public class MainServer {
         }
         try {
             String name = "MessageService";
-            MessageService service = new ChatServer(15, 30);
+            MessageService service = new ChatServer(15, 30, 10);
             MessageService stub =
                 (MessageService) UnicastRemoteObject.exportObject(service, 0);
             Registry registry = LocateRegistry.createRegistry(1099);
